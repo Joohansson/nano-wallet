@@ -215,7 +215,7 @@ canvas {
                       overflow: auto;
                     }
                     canvas {
-                        max-width: 300px;
+                        // max-width: 300px;
                     }
                 }
             }
@@ -738,8 +738,5 @@ input:-webkit-autofill:active {
         border: none;
         font-size: 14px;
     }
-}
-.advanced-inputs {
-    //display: none;
 }
 </style>
