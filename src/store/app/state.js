@@ -1,4 +1,3 @@
-import json from './creds.json'
 export function initialState () {
   return {
     // SETTINGS CAN BE CHANGED
@@ -13,7 +12,6 @@ export function initialState () {
         headers: {
           'Content-Type': 'application/json'
         },
-        auth: json.creds,
       },
       presets: {
         'mynano.ninja': {
