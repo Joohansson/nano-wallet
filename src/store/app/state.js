@@ -24,7 +24,7 @@ export function initialState () {
             'Content-Type': 'application/json'
           }
         },
-      }
+      },
     },
     // DO NOT CHANGE ANYTHING BELOW
     privatekey: null,
