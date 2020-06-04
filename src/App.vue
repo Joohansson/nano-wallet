@@ -663,9 +663,20 @@ input[type=text], input[type=password] {
         height: 60px;
     }
 }
-h1 {
+.logo h1 {
     margin-top: 0;
     margin-left: 20px;
+}
+
+a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #377ccc;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .details {
