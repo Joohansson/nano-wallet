@@ -12,6 +12,7 @@ export function initialState () {
         headers: {
           'Content-Type': 'application/json'
         },
+        auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
       },
       presets: {
         'mynano.ninja': {

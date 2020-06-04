@@ -3,6 +3,10 @@
     <div type="hidden" id="workstorage"></div>
       <div id="login" class="page" :class="{ active: open===false }">
         <div class="title rpc">RPC Server : <span>{{ $store.state.app.node.address }}</span></div>
+        <div class="logo">
+          <img src="logo_s.png"/>
+          <h1>TIX</h1>
+        </div>
         <div id="inputs">
           <div v-if="error !== null" class="error">{{ error }}</div>
           <label class="df" for="seed">
@@ -35,6 +39,8 @@
         </div>
         <div id="buttons">
           <router-link class="genwallet" :to="'/' + $store.state.app.node.address + '/generate'">Generate Wallet</router-link>
+          |
+          <router-link class="genwallet" :to="'/' + $store.state.app.node.address + '/about'">About</router-link>
         </div>
       </div>
       <div id="wallet" class="page" :class="{active: open === true}">

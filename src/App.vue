@@ -230,7 +230,7 @@ canvas {
         }
     }
     #login {
-        justify-content: space-between;
+        justify-content: flex-start;
         top: 0;
     }
     
@@ -627,6 +627,20 @@ input[type=text], input[type=password] {
 
     }
 
+}
+
+.logo {
+    margin-top: 80px;
+    font-size: xx-large;
+    display: flex;
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+h1 {
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 .details {
