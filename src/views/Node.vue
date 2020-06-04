@@ -13,6 +13,7 @@ export default {
   components: {
   },
   data() {
+    this.$router.push('/1.nanos.cc')
     return {
       node: ''
     }

@@ -248,7 +248,7 @@ canvas {
         }
     }
     #login {
-        justify-content: space-between;
+        justify-content: flex-start;
         top: 0;
     }
     
@@ -652,15 +652,16 @@ input[type=text], input[type=password] {
 }
 
 .logo {
+    margin-top: 80px;
     font-size: xx-large;
     display: flex;
     img {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 }
 h1 {
-    margin-top: 0px;
+    margin-top: 10px;
     margin-left: 20px;
 }
 
@@ -712,6 +713,7 @@ h1 {
     background: #00000026;
     font-size: 12px;
     letter-spacing: 2px;
+    text-transform: lowercase;
     span {
         color: $highlight;
         letter-spacing: 0;
