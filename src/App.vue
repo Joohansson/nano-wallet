@@ -679,6 +679,10 @@ a:hover, a:focus {
   cursor: pointer;
 }
 
+.about {
+    margin: 20px;
+}
+
 .details {
     position: relative;
     margin-bottom: 30px;
