@@ -5,7 +5,10 @@
         <div class="title rpc">RPC Server : <span>{{ $store.state.app.node.address }}</span></div>
         <div id="inputs">
           <div v-if="error !== null" class="error">{{ error }}</div>
-          <label for="seed">Seed</label>
+          <label class="df" for="seed">
+            Seed
+              <a class="morebutton mla" href="" @click.prevent="showadvanced = !showadvanced"><i data-fa-transform="grow-20" class="fal fa-ellipsis-h"></i></a>
+            </label>
           <div class="login">
             <input v-model="seed" :type="logintype" id="seed" name="seed">
             <span class="eye" @click="togglevisibility">
@@ -28,7 +31,6 @@
             </div>
           </div>
           <button @click="openWallet" class="openwallet btn" type="button">Open Wallet</button>
-          <button @click="showadvanced = !showadvanced" class="openwallet btn" type="button">Advanced</button>
           <scan-qr @scanned="scanDone"></scan-qr>
         </div>
         <div id="buttons">
@@ -225,10 +227,11 @@ export default {
     },
     scanDone: function (data) {
       if (data.startsWith('nanokey:')){
+        this.showadvanced = true
         this.key = data.replace('nanokey:','').substr(0, 64)
       } else if (data.startsWith('nanoseed:')) {
         const seed = data.replace('nanoseed:','').substr(0, 64)
-        this.key = NanoCurrency.deriveSecretKey(seed, 0)
+        this.seed = seed
       } else {
         this.error = 'QR code data does not conform to specification'
         this.key = data
