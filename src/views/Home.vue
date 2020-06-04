@@ -2,11 +2,13 @@
   <div class="wallet">
     <div type="hidden" id="workstorage"></div>
       <div id="login" class="page" :class="{ active: open===false }">
-        <div class="title rpc">RPC Server : <span>{{ $store.state.app.node.address }}</span></div>
-        <div class="logo">
-          <img src="logo_s.png"/>
-          <h1>TIX</h1>
+        <div class="title rpc">
+          <div class="logo">
+            <img src="logo_s.png"/>
+            <h1>TIX</h1>
+          </div>
         </div>
+        
         <div id="inputs">
           <div v-if="error !== null" class="error">{{ error }}</div>
           <div class="labeltabs">
@@ -44,13 +46,9 @@
           <scan-qr @scanned="scanDone"></scan-qr>
         </div>
         <div id="buttons">
-<<<<<<< HEAD
-          <router-link class="genwallet" :to="'/' + $store.state.app.node.address + '/generate'">Generate Wallet</router-link>
-          |
-          <router-link class="genwallet" :to="'/' + $store.state.app.node.address + '/about'">About</router-link>
-=======
           <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'generate'">Generate Wallet</router-link>
->>>>>>> 794832f61d12a92506c83445005fb45d733495bc
+          |
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">About</router-link>
         </div>
       </div>
       <div id="wallet" class="page" :class="{active: open === true}">
