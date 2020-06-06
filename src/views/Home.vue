@@ -52,7 +52,7 @@
       </div>
       <div id="wallet" class="page" :class="{active: open === true}">
         <div id="powstatus">
-            <div class="status busy" :class="{active: ready === false}">Calculating Work <i class="fas fa-spinner fa-spin"></i></div>
+            <div class="status busy" :class="{active: ready === false}">Calculating Work (may take several minutes) <i class="fas fa-spinner fa-spin"></i></div>
             <div class="status ready" :class="{active: ready === true}">Ready <i class="fas fa-check"></i></div>
         </div>
         <div class="inner">
