@@ -672,14 +672,26 @@ input[type=text], input[type=password] {
     margin: 0 auto;
     padding: 0;
     align-items: center;
+    @media all and (max-width: 900px) {
+        height: 40px;
+        width: 330px;
+    }
     img {
         width: 50px;
         height: 50px;
+        @media all and (max-width: 900px) {
+            width: 40px;
+            height: 40px;
+        }
     }
 }
 .logo h1 {
     margin-left: 20px;
     font-size: 30px;
+    @media all and (max-width: 900px) {
+        font-size: 25px;
+        margin-left: 15px;
+    }
 }
 
 a {
