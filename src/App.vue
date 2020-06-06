@@ -291,7 +291,6 @@ canvas {
     }
     #genwallet {
         top: 0;
-        justify-content: flex-start;
     }
     .genwallet {
         color:$text;
@@ -539,6 +538,10 @@ canvas {
         font-weight: 200;
         font-size: 12px;
         opacity: 0.7;
+        span {
+            display: flex;
+            justify-content: space-between;
+        }
     }
     .icon {
         font-size: 35px;
@@ -810,5 +813,8 @@ input:-webkit-autofill:active {
         border: none;
         font-size: 14px;
     }
+}
+.abbreviate {
+    font-family: 'Courier New', Courier, monospace;
 }
 </style>
