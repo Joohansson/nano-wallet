@@ -5,7 +5,7 @@
         <div class="title rpc">
           <div class="logo">
             <img src="logo_s.png"/>
-            <h1>TIX</h1>
+            <h1>TIX NANO WALLET</h1>
           </div>
         </div>
         <div id="inputs">

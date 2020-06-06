@@ -663,18 +663,19 @@ input[type=text], input[type=password] {
 .logo {
     font-size: x-large;
     display: flex;
-    width: 160px;
-    height: 60px;
+    width: 380px;
+    height: 50px;
     margin: 0 auto;
     padding: 0;
+    align-items: center;
     img {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 }
 .logo h1 {
-    margin-top: 0;
     margin-left: 20px;
+    font-size: 30px;
 }
 
 a {
