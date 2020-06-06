@@ -165,13 +165,13 @@ canvas {
 }
 .showmobile {
   display: block!important;
-  @media all and (min-width: 900px) {
+  @media all and (min-width: 1040px) {
     display: none!important;
   }
 }
 .hidemobile {
   display: none!important;
-  @media all and (min-width: 900px) {
+  @media all and (min-width: 1040px) {
     display: block!important;
   }
 }
@@ -212,7 +212,7 @@ canvas {
             padding: 30px;
             padding-top: 62px;
             margin: -30px;
-            @media all and (min-width: 900px) {
+            @media all and (min-width: 1040px) {
                 display: flex;
                 justify-content: center;
                 overflow-y: visible;
@@ -622,7 +622,7 @@ input[type=text], input[type=password] {
 }
 .login {
     position: relative;
-    .eye {
+    .eye, .max {
         position: absolute;
         display: flex;
         right: 0;
@@ -638,10 +638,16 @@ input[type=text], input[type=password] {
                 display: block;
             }
         }
-
     }
+    .max {
+        font-size: 14px;
+        color: $highlight;
+        cursor: pointer;
+        font-weight: 400;
+    }
+
     input[type=text], input[type=password] {
-        padding-right: 60px;
+        padding-right: 60px!important;
         @media all and (min-width: 900px) {
             font-size: 22px;
             padding: 15px 60px 15px 15px;
@@ -719,6 +725,11 @@ a:hover, a:focus {
         &:after {
             display: none;
         }
+        input[type=text], input[type=password] {
+            padding: 10px;
+            border: none;
+            margin-bottom: 20px;
+        }
     }
 }
 .rpc {
@@ -767,7 +778,7 @@ a:hover, a:focus {
     justify-content: center;
     letter-spacing: 3px;
     text-align: center;
-
+    max-width: 500px;
     &.outline {
         padding: 8px 18px;
         border: 2px solid $highlightsemi;
