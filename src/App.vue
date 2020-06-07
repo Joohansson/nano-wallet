@@ -706,7 +706,16 @@ a:hover, a:focus {
 }
 
 .about {
-    margin: 20px;
+    padding: 20px;
+    @media all and (max-width: 900px) {
+            font-size: 13px;
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 16px;
+            }
+        }
 }
 
 .details {

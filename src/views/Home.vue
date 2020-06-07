@@ -21,14 +21,14 @@
 
             </div>
           <div v-if="seedtab === true" class="login">
-            <input v-model="seed" :type="logintype" placeholder="Seed" id="seed" name="seed">
+            <input v-model="seed" :type="logintype" placeholder="Have you saved the seed?" id="seed" name="seed">
             <span class="eye" @click="togglevisibility">
               <span :class="{ active: logintype === 'password'}"><i class="far fa-eye"></i></span>
               <span :class="{ active: logintype === 'text'}"><i class="far fa-eye-slash"></i></span>
             </span>
           </div>
             <div v-if="seedtab === false" class="login">
-              <input v-model="key" :type="logintype" placeholder="Private key" id="key" name="key">
+              <input v-model="key" :type="logintype" placeholder="Have you saved the key?" id="key" name="key">
               <span class="eye" @click="togglevisibility">
                 <span :class="{ active: logintype === 'password'}"><i class="far fa-eye"></i></span>
                 <span :class="{ active: logintype === 'text'}"><i class="far fa-eye-slash"></i></span>
