@@ -706,11 +706,10 @@ a:hover, a:focus {
 }
 
 .about {
-    padding: 20px;
     @media all and (max-width: 900px) {
             font-size: 13px;
             h1 {
-                font-size: 24px;
+                font-size: 25px;
             }
             h2 {
                 font-size: 16px;
