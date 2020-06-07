@@ -228,10 +228,10 @@ export default {
       const logo_image = new Image()
       logo_image.onload = function(){
         that.loaded += 1
-        let x = (sectionwidth * 2) + (sectionwidth - logo_image.width) / 2
-        let y = that.startTop + ((sectionheight - logo_image.height) / 2)
+        let x = (sectionwidth * 2) + (sectionwidth - 300) / 2
+        let y = that.startTop + ((sectionheight - 300) / 2) + 5
 
-        ctx.drawImage(logo_image, x, sectionheight + y)
+        ctx.drawImage(logo_image, x, sectionheight + y, 300, 300)
       }
       logo_image.src = '/wallet_logo.png'
 
