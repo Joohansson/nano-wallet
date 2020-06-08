@@ -4,16 +4,28 @@ export function initialState () {
     settings: {
       pow: 1,
       changeaddress: false,
-      node: {
-        address: '1.nanos.cc',
-        protocol: 'https',
-        port: 443,
-        path: '/proxy',
-        headers: {
-          'Content-Type': 'application/json'
+      node: [
+        {
+          address: '1.nanos.cc',
+          protocol: 'https',
+          port: 443,
+          path: '/proxy',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
         },
-        auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
-      },
+        {
+          address: '2.nanos.cc',
+          protocol: 'https',
+          port: 443,
+          path: '/proxy',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
+        }
+      ],
       presets: {
         'mynano.ninja': {
           port: 443,
