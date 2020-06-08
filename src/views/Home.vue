@@ -38,7 +38,7 @@
           <div v-if="showadvanced === true">
             <label for="seedindex">Seed Index</label>
             <div class="login">
-              <input v-model="seedindex" :type="logintype" id="seedindex" name="seedindex">
+              <input v-model="seedindex" :type="logintype" placeholder="0 to 4,294,967,295" id="seedindex" name="seedindex">
             </div>
           </div>
           <button @click="openWallet" class="openwallet btn" type="button">Open Wallet</button>
