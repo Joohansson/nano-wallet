@@ -58,11 +58,26 @@ export default {
   },
   methods: {
     scanDone: function (data) {
-      this.destination = data.replace('nano:','').split('?')[0]
+      this.amount = ''
+      this.destination = ''
+      const qrdata = data.replace('nano:','').split('?')
+      this.destination = qrdata[0]
+      if (qrdata[1]) {
+        qrdata[1].split('&').forEach(function(part) {
+          const item = part.split('=')
+          if (item[0] == 'amount' && item[1]) {
+            this.amount = NanoCurrency.convert(item[1],this.rawconv)
+          }
+        }, this)
+      }
     },
     async send() {
       if(this.pow === null) {
-        return alert('Please wait for the status to be ready')
+        this.$notify({
+          title: 'PoW not complete',
+          text: 'Please wait for the status to be ready',
+          type: 'error'
+        })
       }
       if (this.amount.startsWith('.')){
         this.amount = '0' + this.amount
