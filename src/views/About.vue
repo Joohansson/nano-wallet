@@ -3,17 +3,18 @@
     <div class="title rpc">
       <div class="logo">
         <img src="logo_s.png"/>
-        <h1>ABOUT</h1>
+        <h1>ABOUT TIX</h1>
       </div>
     </div>
     <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
     <div class="inner">
       <div class="about">
-        <h2>WHAT IS TIX?</h2>
         <p>
-          A secure client-side JS Wallet running on the live Nano network.<br>
+          TIX is a secure client-side JS Wallet running on the live Nano network.<br>
+          
           <ul>
-            <li>Source code at <a href="https://github.com/Joohansson/nano-wallet">Github</a></li>
+            <li>Developed by <a href="https://www.linuxserver.io/">LinuxServer.io</a></li>
+            <li>Source code at <a href="https://github.com/Joohansson/nano-wallet">Github</a> and this host is running from the <a href="https://github.com/Joohansson/nano-wallet/tree/gh-pages">GH pages branch</a></li>
           </ul> 
           
         </p>
