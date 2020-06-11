@@ -743,7 +743,7 @@ input[type=text], input[type=password] {
 .logo {
     font-size: x-large;
     display: flex;
-    width: 380px;
+    width: 390px;
     height: 50px;
     margin: 0 auto;
     padding: 0;
