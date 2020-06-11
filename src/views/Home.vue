@@ -57,7 +57,12 @@
         </div>
         <div class="inner">
           <div class="block">
-            <div class="headingtitle top"><span id="closewallet" class="" @click="logout"><i class="fal fa-sign-out fa-flip-horizontal"></i></span><span>Wallet</span><span class="refresh rotate" @click="refresh" :class="{ down: isActive }"><i class="fal fa-sync"></i></span></div>
+            <div class="headingtitle top">
+              <span id="closewallet" class="" @click="logout"><i class="fal fa-sign-out fa-flip-horizontal"></i></span>
+              <span>Wallet</span>
+              <span class="refresh rotate" @click="refresh" :class="{ down: isActive }"><i class="fal fa-sync"></i></span>
+              <div class="lastrefresh">Last Refresh: {{ lastrefresh.toLocaleTimeString() }}</div>
+            </div>
             <simplebar class="block pending">
               <div id="output">
                 <div class="balance">
@@ -180,7 +185,9 @@ function initialState (){
     balanceextra: false,
     terminate: false,
     showadvanced: false,
-    seedtab: true
+    seedtab: true,
+    pendingpoll: null,
+    lastrefresh: new Date()
   }
 }
 
@@ -211,9 +218,44 @@ export default {
         console.log('pow change')
         this.refreshDetails()
       }
+    },
+    receive: function (state) {
+      if (state === true && this.$store.state.app.settings.receiverefresh) {
+        const that = this
+        let currentpending
+        let newpending
+        let currentkeys
+        let newkeys
+        this.pendingpoll = setInterval(async function(){ 
+          currentpending = that.pending
+          await that.$store.dispatch('app/pending', that.address)
+          that.$nextTick(function () {
+            newpending = that.pending
+            if (JSON.stringify(currentpending) !== JSON.stringify(newpending)) {
+              currentkeys = Object.keys(currentpending)
+              newkeys = Object.keys(newpending)
+              for (const key of newkeys) {
+                if(currentkeys.indexOf(key) === -1) {
+                  that.$notify({
+                    title: 'Funds received: ' + NanoCurrency.convert(newpending[key].amount,this.rawconv),
+                    text: 'Received from '+ that.abbreviateAddress(newpending[key].source, false),
+                    type: 'success'
+                  })
+                }
+              }
+            }
+          })
+        }, 10000)
+      } else {
+        clearInterval(this.pendingpoll)
+      }
     }
   },
   mounted () {
+  },
+  beforeDestroy: function () {
+    // make sure interval is cleared
+    clearInterval(this.pendingpoll)
   },
   computed: {
     genWalletLink () {
@@ -291,6 +333,7 @@ export default {
       }
       try {
         await this.getDetails(this.privatekey)
+        this.lastrefresh = new Date()
         if(current !== this.details.frontier || open === true) {
           this.genWork(this.privatekey, this.details)
         }

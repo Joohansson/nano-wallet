@@ -4,6 +4,7 @@ export function initialState () {
     settings: {
       pow: 1,
       changeaddress: false,
+      receiverefresh: true,
       node: [
         {
           address: '1.nanos.cc',
