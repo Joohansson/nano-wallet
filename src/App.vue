@@ -215,7 +215,7 @@ canvas {
         justify-content: center;
         transition: all 0.3s;
         position: absolute;
-        top: 32px;
+        top: 70px;
         left: 100vw;
         &.active {
             left: 0;
