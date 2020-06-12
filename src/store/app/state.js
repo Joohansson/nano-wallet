@@ -5,6 +5,7 @@ export function initialState () {
       pow: 1,
       changeaddress: false,
       receiverefresh: true,
+      nfctoken: process.env.VUE_APP_NFC_TOKEN,
       node: [
         {
           address: '1.nanos.cc',

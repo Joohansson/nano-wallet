@@ -52,7 +52,7 @@ We will list here Live Nano RPC provies that we add and how to use them.
 ### [api.nanos.cc](https://api.nanos.cc/)
 Does not requires an API key to use
 * Use: https://wallet.linuxserver.io/#/proxy.nanos.cc
-* DownStream hosted: https://tix.nanos.cc/
+* DownStream hosted: https://tixwallet.cc/
 
 ### [mynano.ninja](https://mynano.ninja/)
 Requires an API key to use: https://mynano.ninja/auth/login#apikey
