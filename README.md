@@ -15,10 +15,10 @@ With that said, these design concepts greatly reduce the barrier of entry to a u
 
 ## Hosted wallet endpoints
 
-The source code for this project is built transparently and published to Github pages at the following endpoints: 
+The source code for this project is built transparently and published to Github pages at the following endpoints:
+* https://tixwallet.cc/#/ - Custom branded wallet running on the Nano main network
 * https://wallet.linuxserver.io/#/ - What is considered stable, built from releases in this repo.
 * https://devwallet.linuxserver.io/#/ - Current head of master built from commits to master in this repo.
-* https://tix.nanos.cc/#/ - Custom branded wallet running on the Nano main network
 
 The URL paths for public block exploration are in the following format: 
 * https://wallet.linuxserver.io/#/nano.linuxserver.io/block/YOUR_BLOCK_HASH_HERE - Displays raw block information.
