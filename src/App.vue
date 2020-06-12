@@ -56,7 +56,7 @@ html, body {
     background: linear-gradient(to bottom, $body-bg1, $body-bg2);
     color: $text;
     font-family: 'Nunito', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     font-size: $font-size-base;
     height: 100%;
     margin: 0;
@@ -372,7 +372,6 @@ canvas {
         top: 0;
     }
     .genwallet {
-        color:$text;
         font-size: 14px;
         font-weight: 400;
     }

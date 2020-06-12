@@ -48,6 +48,10 @@
         <div id="buttons">
           <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'generate'">Generate Wallet</router-link>
           |
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'block/D318ADB547B69733BAFB7D491BF05B38C542F57A39A8BEDB05657D8C95A9EA6D'">Explorer</router-link>
+          |
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'pos/nano_1gur37mt5cawjg5844bmpg8upo4hbgnbbuwcerdobqoeny4ewoqshowfakfo'">PoS</router-link>
+          |
           <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">About</router-link>
         </div>
       </div>
