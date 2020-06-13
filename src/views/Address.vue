@@ -1,5 +1,6 @@
 <template>
   <div style="top: 0;" id="wallet" class="page active">
+    <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
     <div class="inner">
       <div class="block">
         <div class="headingtitle top"><span>Wallet</span></div>

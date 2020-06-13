@@ -1,7 +1,13 @@
 <template>
   <div id="genwallet" class="page active">
+    <div class="title rpc">
+      <div class="logo">
+        <img src="logo_s.png"/>
+        <h1>GENERATE WALLET</h1>
+      </div>
+    </div>
     <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
-    <!--<div class="inner">-->
+    <div class="inner">
       <div class="block">
         <div class="details smaller">
           <label for="seed">Seed <a class="refreshwallet" @click.prevent="refreshWallet" href=""><i class="fal fa-sync"></i></a></label>
@@ -25,7 +31,8 @@
           <qr-block :address="'nanoseed:' + seed"></qr-block>
         </div>
       </div>-->
-    <!--</div>-->
+    </div>
+    <div></div>
   </div>
 </template>
 

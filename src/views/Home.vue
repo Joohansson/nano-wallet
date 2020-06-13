@@ -2,7 +2,7 @@
   <div class="wallet">
     <div type="hidden" id="workstorage"></div>
       <div id="login" class="page" :class="{ active: open===false }">
-        <div class="title rpc">
+        <div class="title rpc" :class="{ hidden: showLogo === false}">
           <div class="logo">
             <img src="logo_s.png"/>
             <h1>TIX NANO WALLET</h1>
@@ -48,11 +48,7 @@
         <div id="buttons">
           <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'generate'">Generate Wallet</router-link>
           |
-          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'block/D318ADB547B69733BAFB7D491BF05B38C542F57A39A8BEDB05657D8C95A9EA6D'">Explorer</router-link>
-          |
-          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'pos/nano_1gur37mt5cawjg5844bmpg8upo4hbgnbbuwcerdobqoeny4ewoqshowfakfo'">PoS</router-link>
-          |
-          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">About</router-link>
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">More Info</router-link>
         </div>
       </div>
       <div id="wallet" class="page" :class="{active: open === true}">
@@ -194,7 +190,8 @@ function initialState (){
     pendingpoll: null,
     lastrefresh: new Date(),
     closebutton: true,
-    nfcsup: false
+    nfcsup: false,
+    showLogo: true
   }
 }
 
@@ -233,6 +230,7 @@ export default {
      this.address = this.$route.params.address
      this.receive = true
      this.closebutton = false
+     this.showLogo = false
     }
     if ("NDEFReader" in window) {
       this.nfcsup = true

@@ -215,7 +215,7 @@ canvas {
         justify-content: center;
         transition: all 0.3s;
         position: absolute;
-        top: 70px;
+        top: 30px;
         left: 100vw;
         &.active {
             left: 0;
@@ -369,6 +369,7 @@ canvas {
         width: 100%;
     }
     #genwallet {
+        justify-content: space-between;
         top: 0;
     }
     .genwallet {
@@ -766,17 +767,19 @@ input[type=text], input[type=password] {
 
 }
 
+.hidden {
+    display: none;
+}
+
 .logo {
     font-size: x-large;
-    display: flex;
-    width: 390px;
+    display: inline-flex;
     height: 50px;
     margin: 0 auto;
     padding: 0;
     align-items: center;
     @media all and (max-width: 900px) {
         height: 40px;
-        width: 330px;
     }
     img {
         width: 50px;
@@ -807,6 +810,15 @@ a:hover, a:focus {
   cursor: pointer;
 }
 
+.about-inner {
+    overflow-y: auto;
+    padding-bottom: 65px;
+    position: relative;
+    width: calc(100% + 60px);
+    padding: 30px;
+    padding-top: 48px;
+    margin-top: 30px;
+}
 .about {
     @media all and (max-width: 900px) {
             font-size: 13px;

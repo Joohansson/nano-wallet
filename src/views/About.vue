@@ -3,11 +3,11 @@
     <div class="title rpc">
       <div class="logo">
         <img src="logo_s.png"/>
-        <h1>ABOUT TIX</h1>
+        <h1>ABOUT TIX WALLET</h1>
       </div>
     </div>
     <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
-    <div class="inner">
+    <div class="about-inner">
       <div class="about">
         <p>
           TIX is a secure client-side JS Wallet running on the live Nano network.<br>
