@@ -62,8 +62,8 @@ export default {
         })
       }
     },
-    receive: function (state) {
-      if ((state === true && this.$store.state.app.settings.receiverefresh) || (this.$route.name == 'POS' && this.amount !== '0')) {
+    receive: function () {
+      if (this.$route.name == 'POS' && this.amount !== '0') {
         const that = this
         let currentpending
         let newpending
@@ -85,13 +85,20 @@ export default {
               for (const key of newkeys) {
                 if(currentkeys.indexOf(key) === -1) {
                   const amountNano = NanoCurrency.convert(newpending[key].amount,that.rawconv)
-                  that.amount = new BigNumber(that.amount).minus(new BigNumber(amountNano)).toFixed()
+                  if (amountNano > that.amount) {
+                    that.amount = '0'
+                  } else {
+                    that.amount = new BigNumber(that.amount).minus(new BigNumber(amountNano)).toFixed()
+                  }
                   that.setReceive()
                   that.$notify({
                     title: 'Funds received: ' + amountNano,
                     text: 'Received from '+ that.abbreviateAddress(newpending[key].source, false),
                     type: 'success'
                   })
+                  if (that.amount !== '0') {
+                    clearInterval(that.pendingpoll)
+                  }
                 }
               }
             }
