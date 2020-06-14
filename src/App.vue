@@ -767,8 +767,8 @@ input[type=text], input[type=password] {
 
 }
 
-.hidden {
-    display: none;
+.pos {
+    top: 70px !important;
 }
 
 .logo {

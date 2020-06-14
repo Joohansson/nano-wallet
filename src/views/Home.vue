@@ -2,7 +2,7 @@
   <div class="wallet">
     <div type="hidden" id="workstorage"></div>
       <div id="login" class="page" :class="{ active: open===false }">
-        <div class="title rpc" :class="{ hidden: showLogo === false}">
+        <div class="title rpc">
           <div class="logo">
             <img src="logo_s.png"/>
             <h1>TIX NANO WALLET</h1>
@@ -130,7 +130,7 @@
           @change="repChange"
         ></settings>
       </div>
-      <div id="receive" class="page" :class="{active: receive !== false}">
+      <div id="receive" class="page" :class="{active: receive !== false, pos: posActive === true}">
         <a class="close" v-if="closebutton === true" @click="receive = false"><i class="fal fa-times"></i></a>
         <receive
           :address="address"
@@ -191,7 +191,7 @@ function initialState (){
     lastrefresh: new Date(),
     closebutton: true,
     nfcsup: false,
-    showLogo: true
+    posActive: false
   }
 }
 
@@ -230,7 +230,7 @@ export default {
      this.address = this.$route.params.address
      this.receive = true
      this.closebutton = false
-     this.showLogo = false
+     this.posActive = true
     }
     if ("NDEFReader" in window) {
       this.nfcsup = true
