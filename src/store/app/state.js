@@ -27,6 +27,16 @@ export function initialState () {
             'Content-Type': 'application/json'
           },
           auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
+        },
+        {
+          address: '3.nanos.cc',
+          protocol: 'https',
+          port: 443,
+          path: '/proxy',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
         }
       ],
       presets: {
