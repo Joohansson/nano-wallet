@@ -267,6 +267,11 @@ export default {
     if ("NDEFReader" in window) {
       this.nfcsup = true
     }
+
+    if(this.$store.state.app.node.address === undefined) {
+      this.$router.push('node')
+    }
+
   },
   computed: {
     genWalletLink () {
