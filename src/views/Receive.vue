@@ -1,12 +1,12 @@
 <template>
   <div class="receive inner">
     <div v-show="showset === false" class="block">
-      <div class="address" @click="link('address',address)" v-html="highlightAddress(address)"></div>
+      <div class="address"><span class="" v-html="highlightAddress(address)"></span> <a @click="copyToClipboard(address)" class="value"><i class="fad fa-clone"></i></a> <a @click="link('address',address)" class="value"><i class="fad fa-external-link"></i></a></div>
       <qr-block :address="receive"></qr-block>
       <div class="receive-amount" v-if="set === true">Amount: {{ amount }}</div>
       <a v-if="clipboard === true" @click.prevent="copyToClipboard(address)" class="btn">Copy Address</a>
       <a @click.prevent="setAmount()" class="btn outline">Set Amount</a>
-      <a @click.prevent="clearReceive()" class="btn outline">Clear Amount</a>
+      <a v-if="set === true" @click.prevent="clearReceive()" class="btn outline">Clear Amount</a>
     </div>
     <div v-show="showset !== false" class="block" style="padding: 0; margin-top: -47px;">
       <div class="amount"><input type="text" @keypress="isNumber($event)" @paste="isNumber($event)" ref="amount" v-model="amount" /></div>
