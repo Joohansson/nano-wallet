@@ -373,8 +373,11 @@ canvas {
         top: 0;
     }
     .genwallet {
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 400;
+        @media all and (max-width: 600px) {
+            font-size: 16px;
+        }
     }
     #wallet {
         z-index: 1;
