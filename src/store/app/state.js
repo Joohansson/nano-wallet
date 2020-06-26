@@ -3,10 +3,10 @@ export function initialState () {
     // SETTINGS CAN BE CHANGED
     settings: {
       pow: 1,
-      changeaddress: true,
+      changeaddress: false,
       checkbackends: true,
       followlinks: true,
-      receiveinterval: 10000,
+      receiveinterval: 5000,
       nfctoken: process.env.VUE_APP_NFC_TOKEN,
       node: [
         {

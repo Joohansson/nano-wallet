@@ -1,22 +1,26 @@
 <template>
-  <div style="top: 0;" id="blockdetails" class="page active">
+  <div style="top: 0;" id="login" class="page active">
+    <div class="title rpc">
+      <div class="logo">
+        <img src="logo_s.png"/>
+        <h1>SETTINGS</h1>
+      </div>
+    </div>
+    <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
     <div id="inputs">
       <div class="labeltabs">
-        <label @click="setNormal" class="df" :class="{ active: showadvanced !== true}">
-          Enter Node Address
-        </label>
         <label @click="setAdvanced" class="df" :class="{ active: showadvanced === true}">
-          Advanced
+          Set Custom Backend URL
         </label>
       </div>
-      <input v-if="showadvanced === false" v-model="node" type="text" id="node" name="node">
       <input v-if="showadvanced === true" v-model="address" placeholder="https://domain.com:443/path" type="text" id="address" name="address">
-      <input v-if="showadvanced === true" v-model="auth" placeholder="Auth Header *optional" type="text" id="auth" name="auth">
-      <button v-if="showadvanced === false" @click="openNode" class="openwallet btn" type="button">Go To Node</button>
-      <button v-if="showadvanced === true" @click="openAdvanced" class="openwallet btn" type="button">Go To Node</button>
+      <input v-if="showadvanced === true" v-model="auth" placeholder="Auth Header (ex. Basic xyz) *optional" type="text" id="auth" name="auth">
+      <button v-if="showadvanced === true" @click="openAdvanced" class="openwallet btn" type="button">Save Settings</button>
     </div>
-    <p style="margin-top: 40px;">This wallet is designed to use any Nano Node RPC server as a backend, using nano.linuxserver.io will plug you into our own public network. More information including how to get funds from a faucet is available on <a class="highlight" target="_blank" href="https://github.com/linuxserver/nano-wallet/">GitHub</a>.</p><p>If you are looking for the live Nano network please use <a class="highlight" href="https://tixwallet.cc/" target="_blank">tixwallet.cc</a>.</p>
-    <p><a class="highlight" target="_blank" href="https://github.com/linuxserver/nano-wallet/"><i class="fab fa-2x fa-github"></i></a></p>
+    <div>
+    <p style="margin-top: 40px;">This wallet is designed to use any Nano RPC API or Node as backend. Any network, any fork.</p><p>The default setting for TIX is the Nano main network with redundant pre-configured backends.</p>
+    </div>
+    <div></div>
   </div>
 </template>
 
@@ -28,12 +32,12 @@ export default {
   components: {
   },
   data() {
-    this.$router.push('/1.nanos.cc')
+    //this.$router.push('/1.nanos.cc')
     return {
       node: 'nano.linuxserver.io',
       address: '',
       auth: '',
-      showadvanced: false
+      showadvanced: true
     }
   },
   mixins: [ serverMixin ],
