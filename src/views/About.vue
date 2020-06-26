@@ -14,7 +14,7 @@
           <ul>
             <li>Developed by <a href="https://www.linuxserver.io/">LinuxServer.io</a></li>
             <li>Source code at <a href="https://github.com/Joohansson/nano-wallet">Github</a></li>
-            <li>TIX can run locally, even without a webserver, either by building from source code or by cloning the site from <a href="https://github.com/Joohansson/nano-wallet/tree/gh-pages">GH pages</a></li>
+            <li>TIX can run locally, either by building from source code or by cloning the site from <a href="https://github.com/Joohansson/nano-wallet/tree/gh-pages">GH pages</a></li>
             <li>More info about Nano at <a href="https://nano.org">Nano.org</a></li>
           </ul> 
         </p>
@@ -38,6 +38,7 @@
             <li>Refreshing wallet state is done manually with the refresh button, for example detect new incoming transactions.</li>
             <li>Each incoming transaction is approved manually using the Receive button.</li>
             <li>Your account's representative can be changed under Settings.</li>
+            <li>Connecting directly to a native local node may be blocked by CORS policy. Try using a middleware like <a href="https://github.com/joohansson/nanorpcproxy">NanoRPCProxy</a> or <a href="https://github.com/linuxserver/docker-nano">Custom Nano Docker Image</a></li>
           </ul>
         </p>
 
