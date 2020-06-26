@@ -68,6 +68,9 @@ export default {
           if (this.auth) {
             node['auth'] = this.auth
           }
+          else {
+            node['auth'] = null
+          }
           this.$store.state.app.settings.node = [node]
           this.$router.push({name:'Home'})
         } else {
