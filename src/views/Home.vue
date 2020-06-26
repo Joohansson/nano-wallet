@@ -48,7 +48,9 @@
         <div id="buttons">
           <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'generate'">Generate Wallet</router-link>
           |
-          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">More Info</router-link>
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'node'">Settings</router-link>
+          |
+          <router-link class="genwallet" :to="$store.getters['app/nodeLink'] + 'about'">About</router-link>
         </div>
       </div>
       <div id="wallet" class="page" :class="{active: open === true}">

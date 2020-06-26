@@ -10,11 +10,12 @@
     <div class="about-inner">
       <div class="about">
         <p>
-          TIX is a secure client-side JS Wallet running on the live Nano network.<br>
+          TIX is a secure client-side JavaScript Wallet<br>
           <ul>
             <li>Developed by <a href="https://www.linuxserver.io/">LinuxServer.io</a></li>
-            <li>Source code at <a href="https://github.com/Joohansson/nano-wallet">Github</a> and this host is running from the <a href="https://github.com/Joohansson/nano-wallet/tree/gh-pages">GH pages branch</a></li>
-            <li>More info at <a href="https://nano.org">Nano.org</a></li>
+            <li>Source code at <a href="https://github.com/Joohansson/nano-wallet">Github</a></li>
+            <li>TIX can run locally, even without a webserver, either by building from source code or by cloning the site from <a href="https://github.com/Joohansson/nano-wallet/tree/gh-pages">GH pages</a></li>
+            <li>More info about Nano at <a href="https://nano.org">Nano.org</a></li>
           </ul> 
         </p>
 
@@ -22,6 +23,7 @@
         <p>
           <ul>
             <li><router-link :to="$store.getters['app/nodeLink'] + 'generate'">Address generator with paper wallet</router-link></li>
+            <li><router-link :to="$store.getters['app/nodeLink'] + 'node'">Hook up to any RPC backend interface</router-link></li>
             <li><router-link :to="$store.getters['app/nodeLink'] + 'block/D318ADB547B69733BAFB7D491BF05B38C542F57A39A8BEDB05657D8C95A9EA6D'">Block Explorer</router-link></li>
             <li><router-link :to="$store.getters['app/nodeLink'] + 'address/nano_3jwrszth46rk1mu7rmb4rhm54us8yg1gw3ipodftqtikf5yqdyr7471nsg1k'">Watch-only address</router-link></li>
             <li><router-link :to="$store.getters['app/nodeLink'] + 'pos/nano_1gur37mt5cawjg5844bmpg8upo4hbgnbbuwcerdobqoeny4ewoqshowfakfo'">Point of Sale (PoS) Terminal</router-link></li>
@@ -34,7 +36,7 @@
             <li>You must keep a backup of the seed since nothing is stored in TIX, locally or remotely. Wallet session is terminated when closing the browser or logging out.</li>
             <li>Proof of Work is always done locally for maximum stability. Depending on device, it may take several minutes to be completed (do not refresh the page).</li>
             <li>Refreshing wallet state is done manually with the refresh button, for example detect new incoming transactions.</li>
-            <li>Each incoming transaction is initiated manually using the Receive button.</li>
+            <li>Each incoming transaction is approved manually using the Receive button.</li>
             <li>Your account's representative can be changed under Settings.</li>
           </ul>
         </p>
