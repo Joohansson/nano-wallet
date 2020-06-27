@@ -47,6 +47,15 @@ export function initialState () {
           headers: {
             'Content-Type': 'application/json'
           }
+        },
+        {
+          address: 'api.nanex.cc',
+          protocol: 'https',
+          port: 443,
+          path: '',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
       ],
       presets: {
