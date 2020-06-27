@@ -34,7 +34,7 @@
         <p>
           <ul>
             <li>You must keep a backup of the seed since nothing is stored in TIX, locally or remotely. Wallet session is terminated when closing the browser or logging out.</li>
-            <li>Proof of Work is always done locally for maximum stability. Depending on device, it may take several minutes to be completed (do not refresh the page).</li>
+            <li>Proof of Work are primary done from remote with fallback to local compute. Depending on device, it may take several minutes (do not refresh the page).</li>
             <li>Refreshing wallet state is done manually with the refresh button, for example detect new incoming transactions.</li>
             <li>Each incoming transaction is approved manually using the Receive button.</li>
             <li>Your account's representative can be changed under Settings.</li>
