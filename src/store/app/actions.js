@@ -188,6 +188,15 @@ export async function pending (context, address) {
 
 }
 
+export async function getWork (context, hash) {
+  const info = {
+    action: 'work_generate',
+    hash: hash
+  }
+  const details = await rpCall(context, info)
+  return details
+}
+
 export function resetState ({ dispatch, commit }) {
   commit('resetState')
   dispatch('node')

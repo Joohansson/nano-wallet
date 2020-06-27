@@ -382,6 +382,16 @@ export default {
         hash = NanoCurrency.derivePublicKey(key)
       }
       
+      // try remote pow first
+      console.log('Calculating pow for ' + hash + ' by requesting via RPC')
+      let remoteWork = await this.$store.dispatch('app/getWork', hash)
+      if ('work' in remoteWork) {
+        this.$store.commit('app/pow', remoteWork.work)
+        this.$store.commit('app/ready', true)
+        return
+      }
+      console.log('Failed getting remote work, continue with local PoW')
+
       const gl = document.createElement('canvas').getContext('webgl2');
       if (gl) {
         console.log('Calculating pow for ' + hash + ' using WebGL this may take some time');
