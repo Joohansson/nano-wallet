@@ -7,7 +7,7 @@
       </div>
     </div>
     <router-link class="close" :to="$store.getters['app/nodeLink']"><i class="fal fa-times"></i></router-link>
-    <div class="inner">
+    <div class="inner generate-inner">
       <div class="block">
         <div class="details smaller">
           <label for="seed">Seed <a class="refreshwallet" @click.prevent="refreshWallet" href=""><i class="fal fa-sync"></i></a></label>

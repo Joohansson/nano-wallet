@@ -263,6 +263,9 @@ canvas {
                 }
             }
         }
+        .generate-inner {
+            padding-bottom: 100px;
+        }
     }
     .block {
         width: 100%;
