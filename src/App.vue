@@ -599,9 +599,10 @@ canvas {
 .btn.sendfunds {
     width: 100%;
     margin: 15px 0;
+    max-width: 100%;
     @media all and (max-width: 600px) {
-        position: absolute;
-        bottom: 32px;
+        position: fixed;
+        bottom: 0px;
         left: 0;
         right: 0;
         border-radius: 0;
@@ -612,6 +613,7 @@ canvas {
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 600;
+        max-width: inherit;
     }
 }
 .scan-qr-code, .scan-qr-code {
@@ -712,7 +714,7 @@ label {
     margin-bottom: 10px;
     display: inline-block;
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password], select {
     font-size: 22px;
     padding: 15px;
     background: #00000036;
@@ -962,5 +964,14 @@ input:-webkit-autofill:active {
 }
 .abbreviate {
     font-family: 'Courier New', Courier, monospace;
+}
+#seedfile {
+  width: 50%;
+}
+#derivebutton {
+  width: 50%;
+}
+.padtop {
+  padding-top: 20px;
 }
 </style>

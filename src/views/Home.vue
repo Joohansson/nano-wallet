@@ -40,6 +40,15 @@
             <div class="login">
               <input v-model="seedindex" :type="logintype" placeholder="0 to 4,294,967,295" id="seedindex" name="seedindex">
             </div>
+            <label for="derivephrase">EXPERIMENTAL PhraseFile <a @click="openPhrasefile"><i class="fal fa-exclamation-circle"></i></a></label>
+            <div class="login">
+              <input type="password" v-model="derivephrase" name="derivephrase" />
+            </div>
+            <div>
+              <button @click="$refs.seedfile.click()" class="btn outline" id="seedfile">File</button>
+              <input type="file" id="deriveupload" ref="seedfile" style="display:none;" />
+              <button @click="derivefromphrase" class="btn outline" id="derivebutton">Derive</button>
+            </div>
           </div>
           <button @click="openWallet" class="openwallet btn" type="button">Open Wallet</button>
           <scan-qr @scanned="scanDone"></scan-qr>
@@ -142,6 +151,10 @@
         <a class="close" v-if="closebutton === true" @click="blockdetails = null"><i class="fal fa-times"></i></a>
         <block-state :details="blockdetails"></block-state>
       </div>
+      <div class="page" style="z-index: 9;" :class="{active: aboutphrase !== false}">
+        <a class="close" @click="closePhrasefile"><i class="fal fa-times"></i></a>
+        <p>Before you use this method to login to your wallet you should have a firm grasp on what is happening on the backend. This login method will shasum a file or a phrase or the combination of the two sums and use that as the seed for your account. In general human beings are incapable of creating a cryptographically secure phrases which is why BIP39 exists, at the least you should use a file + phrase to login using this method. Please also generate a paper wallet from Generate Wallet or write down your seed somewhere. While using this method have the underlying expectation that the funds using this seed have a chance to be stolen and only ever use it for small daily transactional amounts.</p>
+      </div>
 
   </div>
 </template>
@@ -193,7 +206,9 @@ function initialState (){
     lastrefresh: new Date(),
     closebutton: true,
     nfcsup: false,
-    posActive: false
+    posActive: false,
+    derivephrase: '',
+    aboutphrase: false
   }
 }
 
@@ -491,7 +506,39 @@ export default {
 
       }
 
+    },
+    async derivefromphrase () {
+      const that = this
+      const fileitem = document.getElementById('deriveupload').files[0]
+      if (fileitem) {
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(fileitem)
+        reader.onload = async function(file) {
+          const filebytes = file.target.result
+          const shasum = await that.shasum(that.derivephrase,filebytes)
+          that.seed = shasum
+        }
+      } else if (that.derivephrase) {
+        const shasum = await that.shasum(that.derivephrase,null)
+        that.seed = shasum
+      } else {
+        that.$notify({
+          title: 'Error',
+          text: 'You must set one or both of file or phrase to use this',
+          type: 'error'
+        })
+      }
+    },
+
+    closePhrasefile () {
+      this.aboutphrase = false
+    },
+
+    openPhrasefile () {
+      this.aboutphrase = true
     }
+
   }
 }
 </script>
+

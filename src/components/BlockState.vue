@@ -15,6 +15,7 @@
             <div v-if="showspinner !== false"><i class="fas fa-spinner fa-spin"></i></div>
             <div class="account" v-text="metadatahex"></div>
             <div class="account" v-text="metadatautf8"></div>
+           <div class="account" v-show="metadataipfs !== ''" ><a class="account" v-html="metadataipfs" :href="metadataipfs" target="_blank">{{ metadataipfs }}</a></div>
             <div class="label">Off chain metadata attached to this transaction</div>
           </div>
           <div class="block">
@@ -82,7 +83,6 @@ import * as NanoCurrency from 'nanocurrency'
 import { serverMixin } from '../mixins/serverMixin.js'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
-import { blake2sHex } from 'blakejs'
 
 export default {
   name: 'BlockState',
@@ -107,6 +107,7 @@ export default {
       net: null,
       metadatahex: '',
       metadatautf8: '',
+      metadataipfs: '',
       addmetadata: false,
       metaform: false,
       metaformmax: 32,
@@ -140,6 +141,7 @@ export default {
       this.blockstate = await this.$store.dispatch('app/rpCall', blockinfo);
       this.metadatahex = ''
       this.metadatautf8 = ''
+      this.metadataipfs = ''
       this.metaform = false
       this.metadata = ''
       this.showspinner = false
@@ -148,8 +150,13 @@ export default {
         this.addmeta = false
         const payload = await response.text()
         const hexmetadata = payload.substring(192)
-        this.metadatahex = 'HEX: ' + hexmetadata
-        this.metadatautf8 = 'UTF8: ' + new Buffer(hexmetadata, 'hex').toString('utf8')
+        const ipfsres = await fetch('https://www.nanometadata.com/ipfs/' + this.hash)
+        if (ipfsres.ok) {
+          this.metadataipfs = 'https://cloudflare-ipfs.com/ipfs/' + hexmetadata
+        } else {
+          this.metadatahex = 'HEX: ' + hexmetadata
+          this.metadatautf8 = 'UTF8: ' + new Buffer(hexmetadata, 'hex').toString('utf8')
+        }
       } else {
         if (this.$route.name !== 'Block') {
           this.addmeta = true
@@ -173,15 +180,8 @@ export default {
         }
         this.metaform = false
         this.showspinner = true
-        const privkey = this.$store.state.app.privatekey
         const hex = Buffer(this.metadata).toString('hex')
-        const hash = blake2sHex(this.hash + hex).toUpperCase()
-        const pubkey = NanoCurrency.derivePublicKey(privkey)
-        const sig = NanoCurrency.signBlock({ hash: hash, secretKey: privkey })
-        const params = 'trans=' + this.hash + '&data=' + hex + '&pub=' + pubkey + '&sig=' + sig + '&net=' + this.net
-        const apiurl = 'https://api.nanometadata.com/metadata?' + params
-        const response = await fetch(apiurl)
-        const apires = await response.text()
+        const { response, apires } = await this.setmetadata(hex,this.hash,this.$store.state.app.privatekey,this.net)
         if (response.ok) {
           this.$notify({
             title: 'Transaction signed',
@@ -222,5 +222,9 @@ export default {
 <style scoped lang="scss">
 #app .page {
   padding: 30px;
+}
+a {
+  text-decoration: none;
+  color:#a7b0ca; 
 }
 </style>
