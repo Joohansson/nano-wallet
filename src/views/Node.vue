@@ -38,7 +38,7 @@ export default {
       address: '',
       auth: '',
       nodetype: 'nano',
-      showadvanced: false
+      showadvanced: true
     }
   },
   mixins: [ serverMixin ],
