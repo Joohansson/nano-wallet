@@ -1,4 +1,4 @@
-import * as NanoCurrency from 'nanocurrency'
+import * as NanoCurrency from '@thelamer/nanocurrency'
 import router from '@/router'
 
 function protocol() {
@@ -23,6 +23,9 @@ export async function node ({ commit, state }) {
       newnode = {
         ...newnode,
         ...preset
+      }
+      if(preset.banano && preset.banano == true) {
+        state.prefixparams = 'useBananoPrefix'
       }
     }
   } else {

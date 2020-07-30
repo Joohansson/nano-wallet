@@ -45,8 +45,8 @@
               <input type="password" v-model="derivephrase" name="derivephrase" />
             </div>
             <div>
-              <button @click="$refs.seedfile.click()" class="btn outline" id="seedfile">File</button>
-              <input type="file" id="deriveupload" ref="seedfile" style="display:none;" />
+              <button @click="$refs.seedfile.click()" class="btn outline" id="seedfile">{{ filebutton }}</button>
+              <input type="file" id="deriveupload" ref="seedfile" @change="filebuttonchange" style="display:none;" />
               <button @click="derivefromphrase" class="btn outline" id="derivebutton">Derive</button>
             </div>
           </div>
@@ -168,7 +168,7 @@ import Settings from '@/views/Settings.vue'
 import BlockState from '@/components/BlockState.vue'
 import { serverMixin } from '../mixins/serverMixin.js'
 import * as webglpow from '../mixins/webgl-pow.js'
-import * as NanoCurrency from 'nanocurrency'
+import * as NanoCurrency from '@thelamer/nanocurrency'
 import Worker from 'worker-loader!./../mixins/pow.js'
 import simplebar from 'simplebar-vue';
 import 'simplebar/dist/simplebar.min.css';
@@ -208,7 +208,10 @@ function initialState (){
     nfcsup: false,
     posActive: false,
     derivephrase: '',
-    aboutphrase: false
+    aboutphrase: false,
+    workthresholdgl: '0xFFFFFFC0',
+    workthreshold: 'fffffc0000000000',
+    filebutton: 'File'
   }
 }
 
@@ -314,6 +317,9 @@ export default {
     },
     privatekey () {
       return this.$store.state.app.privatekey
+    },
+    prefixparams () {
+      return this.$store.state.app.prefixparams
     }
   },
   methods: {
@@ -387,6 +393,10 @@ export default {
     async genWork (key, details){
       this.$store.commit('app/pow', null)
       this.$store.commit('app/ready', false)
+      if (this.prefixparams == 'useBananoPrefix') {
+        this.workthresholdgl = '0xFFFFFFE0'
+        this.workthreshold = 'fffffe0000000000'
+      }
 
       let hash
       if ('frontier' in details){
@@ -410,7 +420,7 @@ export default {
       const gl = document.createElement('canvas').getContext('webgl2');
       if (gl) {
         console.log('Calculating pow for ' + hash + ' using WebGL this may take some time');
-        webglpow.calculate(hash, '0xFFFFFFC0', 2048, 256, (work) => {
+        webglpow.calculate(hash, this.workthresholdgl, 2048, 256, (work) => {
             this.$store.commit('app/pow', work)
             this.$store.commit('app/ready', true)
         })
@@ -424,7 +434,8 @@ export default {
               worker.postMessage({
                 blockHash: hash,
                 workerIndex: i,
-                workerCount: workerCount
+                workerCount: workerCount,
+                workThreshold: this.workthreshold
               });
               worker.onmessage = (work) => {
                 console.log('Work: ' + work.data);
@@ -445,7 +456,7 @@ export default {
         }
         else{
           console.log('Calculating pow for ' + hash + ' (no worker) this may take some time');
-          var work = await NanoCurrency.computeWork(hash);
+          var work = await NanoCurrency.computeWork(hash,{ workThreshold: this.workthreshold });
           this.$store.commit('app/pow', work)
           this.$store.commit('app/ready', true)
 
@@ -460,7 +471,9 @@ export default {
     },
     getAddress (key) {
       const publickey = NanoCurrency.derivePublicKey(key)
-      return NanoCurrency.deriveAddress(publickey,{useNanoPrefix:true})
+      let params = {}
+      params[this.prefixparams] = true
+      return NanoCurrency.deriveAddress(publickey,params)
     },
     async getDetails (key) {
       this.address = this.getAddress(key)
@@ -536,6 +549,11 @@ export default {
 
     openPhrasefile () {
       this.aboutphrase = true
+    },
+
+    filebuttonchange () {
+      const fileitem = document.getElementById('deriveupload').files[0]
+      this.filebutton = fileitem.name.substring(0, 10) + '..'
     }
 
   }

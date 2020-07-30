@@ -65,7 +65,7 @@
 
 <script>
 import { serverMixin } from '../mixins/serverMixin.js'
-import * as NanoCurrency from 'nanocurrency'
+import * as NanoCurrency from '@thelamer/nanocurrency'
 import BigNumber from 'bignumber.js'
 import ScanQr from '../components/ScanQr.vue'
 import ScanNfc from '../components/ScanNfc.vue'
@@ -118,6 +118,9 @@ export default {
     },
     privatekey () {
       return this.$store.state.app.privatekey
+    },
+    prefixparams () {
+      return this.$store.state.app.prefixparams
     }
   },
   watch: {
@@ -197,7 +200,9 @@ export default {
       // make sure it's a valid number
       if (this.checkamount(amount) && NanoCurrency.checkAddress(this.destination)) {
         const senderpublickey = NanoCurrency.derivePublicKey(this.privatekey)
-        const sender = NanoCurrency.deriveAddress(senderpublickey,{useNanoPrefix:true})
+        let params = {}
+        params[this.prefixparams] = true
+        const sender = NanoCurrency.deriveAddress(senderpublickey,params)
         let info = {}
         info['action'] = 'account_info'
         info['representative'] = 'true'
@@ -210,13 +215,14 @@ export default {
           representative: res.representative,
           balance: balance,
           link: this.destination
-        })
+        },params)
         console.log(block)
         let send = {}
         send['action'] = 'process'
-        send['json_block'] = 'true'
+        //send['json_block'] = 'true'
         send['subtype'] = 'send'
-        send['block'] = block.block
+        send['block'] = JSON.stringify(block.block)
+        console.log(send)
         const sendres = await this.$store.dispatch('app/rpCall', send)
         if (Object.keys(this.payload).length !== 0) {
           this.payload['transactionhash'] = sendres.hash
@@ -277,6 +283,8 @@ export default {
     async renderform() {
       if (this.$store.state.app.node.address.split('.').slice(-2)[0] == 'linuxserver') {
         this.net = 'lsio'
+      } else if (this.prefixparams == 'useBananoPrefix') {
+        this.net = 'banano'
       } else {
         this.net = 'live'
       }
@@ -297,7 +305,7 @@ export default {
         this.product = checkoutyaml.product
         this.amount = checkoutyaml.price.toString()
         this.destination = checkoutyaml.destination
-        this.checkoutheader = 'This will send ' + checkoutyaml.price + ' Nano to ' + checkoutyaml.destination.substring(0, 11) + '...' + checkoutyaml.destination.slice(checkoutyaml.destination.length - 6) + ' for ' + checkoutyaml.product + ', please save your receipt from this order it will help you verify your order if something goes wrong'
+        this.checkoutheader = 'This will send ' + checkoutyaml.price + ' ' + ( this.net == 'banano' ? 'Banano' : 'Nano' ) + ' to ' + checkoutyaml.destination.substring(0, 11) + '...' + checkoutyaml.destination.slice(checkoutyaml.destination.length - 6) + ' for ' + checkoutyaml.product + ', please save your receipt from this order it will help you verify your order if something goes wrong'
         this.form = checkoutyaml
       } else {
         this.$notify({

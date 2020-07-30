@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import * as NanoCurrency from 'nanocurrency'
+import * as NanoCurrency from '@thelamer/nanocurrency'
 import { serverMixin } from '../mixins/serverMixin.js'
 import ScanQr from '../components/ScanQr.vue'
 import ScanNfc from '../components/ScanNfc.vue'
@@ -53,6 +53,9 @@ export default {
     },
     privatekey () {
       return this.$store.state.app.privatekey
+    },
+    prefixparams () {
+      return this.$store.state.app.prefixparams
     }
 
   },
@@ -81,7 +84,9 @@ export default {
       }
       if (NanoCurrency.checkAddress(this.newrep)) {
         const publickey = NanoCurrency.derivePublicKey(this.privatekey)
-        const address = NanoCurrency.deriveAddress(publickey,{useNanoPrefix:true})
+        let params = {}
+        params[this.prefixparams] = true
+        const address = NanoCurrency.deriveAddress(publickey,params)
 
         let infodetails = {};
         infodetails['action'] = 'account_info';
@@ -99,13 +104,13 @@ export default {
           representative: this.newrep,
           balance: balance,
           link: '0000000000000000000000000000000000000000000000000000000000000000'
-        });
+        },params);
 
         let repchange = {};
         repchange['action'] = 'process';
-        repchange['json_block'] = 'true';
+        //repchange['json_block'] = 'true';
         repchange['subtype'] = blocktype;
-        repchange['block'] = block.block;
+        repchange['block'] = JSON.stringify(block.block);
         await this.$store.dispatch('app/rpCall', repchange)
         this.$emit('change', true)
       } else {

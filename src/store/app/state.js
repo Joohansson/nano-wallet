@@ -80,7 +80,8 @@ export function initialState () {
       port: null,
       path: '',
       auth: null
-    }
+    },
+    prefixparams: 'useNanoPrefix'
   }
 }
 

@@ -37,7 +37,8 @@ export default {
       node: 'nano.linuxserver.io',
       address: '',
       auth: '',
-      showadvanced: true
+      nodetype: 'nano',
+      showadvanced: false
     }
   },
   mixins: [ serverMixin ],
@@ -68,8 +69,9 @@ export default {
           if (this.auth) {
             node['auth'] = this.auth
           }
-          else {
-            node['auth'] = null
+          if (this.nodetype == 'banano') {
+            node['banano'] = true
+            this.$store.state.app.prefixparams = 'useBananoPrefix'
           }
           this.$store.state.app.settings.node = [node]
           this.$router.push({name:'Home'})
@@ -99,4 +101,15 @@ export default {
 </script>
 
 <style lang="scss">
+.presets button{
+  padding: 10px !important;
+  font-size: 12px !important;
+  margin-right: 4px !important;
+  margin-left: 4px !important;
+  margin-bottom: 8px !important;
+}
+.yellow {
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+}
 </style>
