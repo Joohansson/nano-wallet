@@ -209,8 +209,8 @@ function initialState (){
     posActive: false,
     derivephrase: '',
     aboutphrase: false,
-    workthresholdgl: '0xFFFFFFC0',
-    workthreshold: 'fffffc0000000000',
+    workthresholdgl: '0xFFFFFFF8',
+    workthreshold: 'fffffff800000000',
     filebutton: 'File'
   }
 }
