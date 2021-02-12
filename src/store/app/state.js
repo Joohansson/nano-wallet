@@ -17,7 +17,7 @@ export function initialState () {
           headers: {
             'Content-Type': 'application/json'
           },
-          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
+          auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
         },
         {
           address: '2.nanos.cc',
@@ -27,7 +27,7 @@ export function initialState () {
           headers: {
             'Content-Type': 'application/json'
           },
-          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
+          auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
         },
         {
           address: '3.nanos.cc',
@@ -37,7 +37,7 @@ export function initialState () {
           headers: {
             'Content-Type': 'application/json'
           },
-          auth: 'Basic d2FsbGV0OlQ5R3ZaMXVrdkNDR0tTUFRlbDFkZVplNVZ5RXYwY255'
+          auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
         },
         {
           address: 'mynano.ninja',
