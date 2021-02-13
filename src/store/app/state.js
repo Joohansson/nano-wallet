@@ -49,10 +49,19 @@ export function initialState () {
           }
         },
         {
-          address: 'api.nanex.cc',
+          address: 'proxy.powernode.cc',
           protocol: 'https',
           port: 443,
-          path: '',
+          path: '/proxy',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        },
+        {
+          address: 'rainstorm.city',
+          protocol: 'https',
+          port: 443,
+          path: '/api',
           headers: {
             'Content-Type': 'application/json'
           }
