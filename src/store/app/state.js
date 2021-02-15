@@ -30,14 +30,23 @@ export function initialState () {
           auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
         },
         {
-          address: '3.nanos.cc',
+          address: 'vox.nanos.cc',
           protocol: 'https',
           port: 443,
-          path: '/proxy',
+          path: '/api',
           headers: {
             'Content-Type': 'application/json'
           },
           auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
+        },
+        {
+          address: 'rainstorm.city',
+          protocol: 'https',
+          port: 443,
+          path: '/api',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         },
         {
           address: 'mynano.ninja',
@@ -53,15 +62,6 @@ export function initialState () {
           protocol: 'https',
           port: 443,
           path: '/proxy',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        },
-        {
-          address: 'rainstorm.city',
-          protocol: 'https',
-          port: 443,
-          path: '/api',
           headers: {
             'Content-Type': 'application/json'
           }
