@@ -28,15 +28,6 @@ export function initialState () {
             'Content-Type': 'application/json'
           },
           auth: 'Basic c2VjcmV0OklqMWxxanhsMXJiSnB4RVFwamRr'
-        },
-        {
-          address: 'proxy.powernode.cc',
-          protocol: 'https',
-          port: 443,
-          path: '/proxy',
-          headers: {
-            'Content-Type': 'application/json'
-          }
         }
       ],
       presets: {
